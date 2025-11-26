@@ -1,0 +1,10 @@
+img {
+  display: inline;
+}
+
+
+/* reduce width height of image which contained src attribute  start with https://static*/
+img[src^="https://static.xx"] {
+  width: 1em;
+  height: 1em;
+}
