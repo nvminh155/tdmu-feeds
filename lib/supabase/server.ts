@@ -30,4 +30,3 @@ export default async function createClientForServer() {
   );
 }
 
-export const supabaseServer = createClientForServer();

@@ -1,9 +1,9 @@
 "use client";
 
 import AuthButton from "@/components/auth/auth-button";
-import { Search, Bell } from "lucide-react";
+import { Search, Bell, LoaderCircle } from "lucide-react";
 import Link from "next/link";
-
+import { Suspense } from "react";
 
 export function TopBar() {
   return (
@@ -25,11 +25,11 @@ export function TopBar() {
         </Link>
 
         <div className="flex items-center gap-4">
-
-          <AuthButton />
+          <Suspense fallback={<LoaderCircle className="size-5 animate-spin" />}>
+            <AuthButton />
+          </Suspense>
         </div>
       </div>
-
     </div>
   );
 }
