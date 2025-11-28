@@ -42,7 +42,6 @@ const PostImageList = ({ item }: { item: TPost }) => {
 
   // Show error state
   if (error) {
-    console.log("Error loading images:", error);
     return null;
   }
 

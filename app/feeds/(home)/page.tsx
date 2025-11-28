@@ -46,7 +46,6 @@ export default function NewsHomePage() {
 
 const PinnedTab = () => {
   const { data, isLoading } = usePinnedQuery();
-  console.log(data);
   return (
     <TabsContent value="pinned">
       <div className="space-y-4">

@@ -17,7 +17,6 @@ type TGetNewsFeedParams = {
 
 const NewsService = {
   getNewsFeed: async (payload: TGetNewsFeedParams, userId?: string) => {
-    console.log(payload);
     if (userId) {
       return await kyAuthApi.post<TPost[]>("news/with-favorite", {
         json: payload,

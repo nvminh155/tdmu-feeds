@@ -71,15 +71,15 @@ const handleError = async (error: unknown) => {
     const req = error.request;
 
     const message = await res.json();
-    console.log(
-      `${red`[${error.name}] - ${res.status.toString()} ${req.method}:`}`,
-      new URL(res.url)?.pathname?.replace(BASE_URL + "/api/v1", "/")
-    );
-    console.log(
-      `${cyan`[Header]:`}`,
-      Object.fromEntries(error.request.headers)
-    );
-    console.log(`${cyan`[message]:`}`, message);
+    // console.log(
+    //   `${red`[${error.name}] - ${res.status.toString()} ${req.method}:`}`,
+    //   new URL(res.url)?.pathname?.replace(BASE_URL + "/api/v1", "/")
+    // );
+    // console.log(
+    //   `${cyan`[Header]:`}`,
+    //   Object.fromEntries(error.request.headers)
+    // );
+    // console.log(`${cyan`[message]:`}`, message);
 
     if (res?.status === 401) redirect("/login");
   }
@@ -87,15 +87,8 @@ const handleError = async (error: unknown) => {
   if (error instanceof HTTPError) {
     const res = await error.response;
     const data = await res.json();
-    const err = data.error;
 
-    // console.log("r", dataErr);
-    const customError = new Error(res.statusText);
-    Object.assign(customError, {
-      statusCode: res.status,
-      ...err,
-    });
-    return Promise.reject(customError);
+    return Promise.reject(error);
   }
 
   return Promise.reject(error);

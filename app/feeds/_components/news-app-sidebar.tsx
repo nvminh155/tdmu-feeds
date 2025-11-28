@@ -38,6 +38,7 @@ const navigationItems = [
     label: "Thông tin các trang",
     icon: BookOpen,
     href: "/feeds/pages-info",
+
   },
 ];
 
@@ -146,7 +147,7 @@ export default function NewsAppSidebar({
               })}
 
 
-              {favoriteProfiles?.length === 0 && <EmptyFavorite />}
+              {!favoriteProfiles?.length && <EmptyFavorite />}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
