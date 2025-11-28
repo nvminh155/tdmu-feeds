@@ -46,6 +46,12 @@
   --breakpoint-xs: 480px;
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  
+}
+
 :root {
   --header-height: 69px;
   --radius: 0.625rem;
@@ -144,8 +150,16 @@
 }
 
 
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  
+
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer utilities {
+  .mobile-nav-active {
+    @apply text-primary;
+  }
 }
