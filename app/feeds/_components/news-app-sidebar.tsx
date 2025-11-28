@@ -26,6 +26,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import EmptyFavorite from "./empty-favorite";
+import { useSession } from "@/contexts/session-provider";
 
 const navigationItems = [
   {
@@ -44,7 +45,8 @@ export default function NewsAppSidebar({
   className,
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  const { data: favoriteProfiles } = useFavoriteProfilesQuery();
+  const { user } = useSession();
+  const { data: favoriteProfiles } = useFavoriteProfilesQuery(user?.id ?? "");
   const pathname = usePathname();
   const router = useRouter();
   return (

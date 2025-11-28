@@ -4,10 +4,10 @@ import { queryOptions } from "@tanstack/react-query";
 const newsQueries = {
   allKey: () => ["all-news"],
   listKey: () => [...newsQueries.allKey(), "list"],
-  favoriteProfilesKey: () => [...newsQueries.allKey(), "favorite-profiles"],
-  favoriteProfiles: () =>
+  favoriteProfilesKey: (userId?: string) => [...newsQueries.allKey(), "favorite-profiles", userId],
+  favoriteProfiles: (userId?: string) =>
     queryOptions({
-      queryKey: newsQueries.favoriteProfilesKey(),
+      queryKey: newsQueries.favoriteProfilesKey(userId),
       queryFn: () => NewsService.getFavoriteProfiles(),
     }),
   pinnedKey: () => [...newsQueries.allKey(), "pinned"],
