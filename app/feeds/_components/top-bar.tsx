@@ -4,6 +4,7 @@ import AuthButton from "@/components/auth/auth-button";
 import { Search, Bell, LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
+import Image from "next/image";
 
 export function TopBar() {
   return (
@@ -11,11 +12,17 @@ export function TopBar() {
       {/* Header with logo and login */}
       <div className="px-6 py-3 flex items-center justify-between ">
         <Link href="/feeds" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-sm">
+          <Image
+            src="/og-img.png"
+            alt="TDMU News Feed"
+            width={50}
+            height={50}
+          />
+          {/* <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-sm">
             <span className="text-primary-foreground text-lg font-bold">T</span>
-          </div>
+          </div> */}
           <div className="hidden sm:block">
-            <h1 className="text-lg font-bold text-foreground">
+          <h1 className="text-lg font-bold bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
               TDMU News Feed
             </h1>
             <p className="text-xs text-muted-foreground">
