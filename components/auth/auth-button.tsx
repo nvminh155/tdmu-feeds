@@ -51,9 +51,10 @@ export default function AuthButton() {
       const { error, data } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/api/auth/callback${
+          redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback${
             next ? `?next=${encodeURIComponent(next)}` : ""
           }`,
+          
         },
       });
 

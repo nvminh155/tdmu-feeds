@@ -21,7 +21,7 @@ export const defaultLocale = localeSwitcher[0].code;
 export const PUBLIC_ROUTES = {
   "/": ["/"],
   "/login": ["/login"],
-  "/feeds": ["/feeds"],
+  "/feeds": ["/feeds", "/feeds/pages-info"],
 } as const;
 
 export type TPublicRoute = typeof PUBLIC_ROUTES;

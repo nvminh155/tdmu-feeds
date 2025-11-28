@@ -1,0 +1,1029 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "12.2.3 (519615d)"
+  }
+  public: {
+    Tables: {
+      categories: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          created_by: string | null
+          id: number
+          name: string
+          type: Database["public"]["Enums"]["category_type"]
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: number
+          name: string
+          type?: Database["public"]["Enums"]["category_type"]
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: number
+          name?: string
+          type?: Database["public"]["Enums"]["category_type"]
+        }
+        Relationships: []
+      }
+      documents: {
+        Row: {
+          content: string | null
+          embedding: string | null
+          id: number
+          metadata: Json | null
+        }
+        Insert: {
+          content?: string | null
+          embedding?: string | null
+          id?: number
+          metadata?: Json | null
+        }
+        Update: {
+          content?: string | null
+          embedding?: string | null
+          id?: number
+          metadata?: Json | null
+        }
+        Relationships: []
+      }
+      facebook_posts: {
+        Row: {
+          content: string
+          converted_time: string | null
+          created_at: string
+          id: number
+          images: string | null
+          is_hot_news: boolean | null
+          is_pinned: boolean | null
+          original_time: string | null
+          page_name: string | null
+          short_name: string
+          source_from: string
+          summarization: string | null
+          tags: string[] | null
+          title: string
+          updated_at: string | null
+          url: string
+          uuid: string | null
+        }
+        Insert: {
+          content: string
+          converted_time?: string | null
+          created_at?: string
+          id?: number
+          images?: string | null
+          is_hot_news?: boolean | null
+          is_pinned?: boolean | null
+          original_time?: string | null
+          page_name?: string | null
+          short_name: string
+          source_from?: string
+          summarization?: string | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string | null
+          url: string
+          uuid?: string | null
+        }
+        Update: {
+          content?: string
+          converted_time?: string | null
+          created_at?: string
+          id?: number
+          images?: string | null
+          is_hot_news?: boolean | null
+          is_pinned?: boolean | null
+          original_time?: string | null
+          page_name?: string | null
+          short_name?: string
+          source_from?: string
+          summarization?: string | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string | null
+          url?: string
+          uuid?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "facebook_posts_short_name_fkey"
+            columns: ["short_name"]
+            isOneToOne: false
+            referencedRelation: "rss_profiles"
+            referencedColumns: ["short_name"]
+          },
+        ]
+      }
+      locations: {
+        Row: {
+          description: string | null
+          id: number
+          images: string[] | null
+          lat: number
+          lng: number
+          name: string
+        }
+        Insert: {
+          description?: string | null
+          id?: number
+          images?: string[] | null
+          lat: number
+          lng: number
+          name: string
+        }
+        Update: {
+          description?: string | null
+          id?: number
+          images?: string[] | null
+          lat?: number
+          lng?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      n8n_chat_histories: {
+        Row: {
+          id: number
+          message: Json
+          session_id: string
+        }
+        Insert: {
+          id?: number
+          message: Json
+          session_id: string
+        }
+        Update: {
+          id?: number
+          message?: Json
+          session_id?: string
+        }
+        Relationships: []
+      }
+      periods_in_day: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          end_time: string
+          id: number
+          minutes: number
+          modified_at: string | null
+          modified_by: string | null
+          period: number
+          start_time: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          end_time: string
+          id?: number
+          minutes?: number
+          modified_at?: string | null
+          modified_by?: string | null
+          period: number
+          start_time: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          end_time?: string
+          id?: number
+          minutes?: number
+          modified_at?: string | null
+          modified_by?: string | null
+          period?: number
+          start_time?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          full_name: string | null
+          id: string
+          role: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      profiles_rss_favorites: {
+        Row: {
+          created_at: string
+          profile_short_name: string
+          status: boolean | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          profile_short_name: string
+          status?: boolean | null
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          profile_short_name?: string
+          status?: boolean | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_rss_favorites_profile_short_name_fkey"
+            columns: ["profile_short_name"]
+            isOneToOne: false
+            referencedRelation: "rss_profiles"
+            referencedColumns: ["short_name"]
+          },
+          {
+            foreignKeyName: "profiles_rss_favorites_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          file_path: Json | null
+          id: string
+          mime_type: string | null
+          name: string
+          size: number
+          updated_at: string
+          updated_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          file_path?: Json | null
+          id?: string
+          mime_type?: string | null
+          name: string
+          size: number
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          file_path?: Json | null
+          id?: string
+          mime_type?: string | null
+          name?: string
+          size?: number
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rss_profiles: {
+        Row: {
+          avatar: string | null
+          created_at: string | null
+          name: string | null
+          scrape_type: string | null
+          short_name: string
+          source_from: string | null
+          updated_at: string | null
+          url: string | null
+        }
+        Insert: {
+          avatar?: string | null
+          created_at?: string | null
+          name?: string | null
+          scrape_type?: string | null
+          short_name: string
+          source_from?: string | null
+          updated_at?: string | null
+          url?: string | null
+        }
+        Update: {
+          avatar?: string | null
+          created_at?: string | null
+          name?: string | null
+          scrape_type?: string | null
+          short_name?: string
+          source_from?: string | null
+          updated_at?: string | null
+          url?: string | null
+        }
+        Relationships: []
+      }
+      scraped_post_tags: {
+        Row: {
+          created_at: string
+          id: number
+          is_active: boolean | null
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          is_active?: boolean | null
+          name?: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          is_active?: boolean | null
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      semesters: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          end_at: string
+          id: number
+          is_lecturer: boolean
+          modified_at: string | null
+          modified_by: string | null
+          start_at: string
+          title: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          end_at: string
+          id: number
+          is_lecturer?: boolean
+          modified_at?: string | null
+          modified_by?: string | null
+          start_at: string
+          title?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          end_at?: string
+          id?: number
+          is_lecturer?: boolean
+          modified_at?: string | null
+          modified_by?: string | null
+          start_at?: string
+          title?: string | null
+        }
+        Relationships: []
+      }
+      timetable: {
+        Row: {
+          class_code: string | null
+          class_date: string
+          class_name: string | null
+          created_at: string
+          created_by: string | null
+          credits: string
+          day_of_week: number
+          group_code: string | null
+          id: number
+          is_previous_semester: number
+          lecturer_code: string | null
+          lecturer_name: string | null
+          modified_at: string | null
+          modified_by: string | null
+          room_code: string | null
+          start_period: number
+          subject_code: string
+          subject_name: string
+          total_periods: number
+          user_id: string
+        }
+        Insert: {
+          class_code?: string | null
+          class_date: string
+          class_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          credits: string
+          day_of_week: number
+          group_code?: string | null
+          id?: number
+          is_previous_semester?: number
+          lecturer_code?: string | null
+          lecturer_name?: string | null
+          modified_at?: string | null
+          modified_by?: string | null
+          room_code?: string | null
+          start_period: number
+          subject_code: string
+          subject_name: string
+          total_periods: number
+          user_id: string
+        }
+        Update: {
+          class_code?: string | null
+          class_date?: string
+          class_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          credits?: string
+          day_of_week?: number
+          group_code?: string | null
+          id?: number
+          is_previous_semester?: number
+          lecturer_code?: string | null
+          lecturer_name?: string | null
+          modified_at?: string | null
+          modified_by?: string | null
+          room_code?: string | null
+          start_period?: number
+          subject_code?: string
+          subject_name?: string
+          total_periods?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      timetable_weeks: {
+        Row: {
+          absolute_week: number
+          created_at: string
+          created_by: string | null
+          end_date: string
+          id: number
+          modified_at: string | null
+          modified_by: string | null
+          semester_id: number
+          start_date: string
+          title: string
+          week_semester: number
+        }
+        Insert: {
+          absolute_week: number
+          created_at?: string
+          created_by?: string | null
+          end_date: string
+          id?: number
+          modified_at?: string | null
+          modified_by?: string | null
+          semester_id: number
+          start_date: string
+          title: string
+          week_semester: number
+        }
+        Update: {
+          absolute_week?: number
+          created_at?: string
+          created_by?: string | null
+          end_date?: string
+          id?: number
+          modified_at?: string | null
+          modified_by?: string | null
+          semester_id?: number
+          start_date?: string
+          title?: string
+          week_semester?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "timetable_weeks_semester_id_fkey"
+            columns: ["semester_id"]
+            isOneToOne: false
+            referencedRelation: "semesters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_events: {
+        Row: {
+          category: number | null
+          created_at: string
+          end_date: string
+          id: number
+          notes: string
+          start_date: string
+          title: string
+          user_uuid: string
+        }
+        Insert: {
+          category?: number | null
+          created_at?: string
+          end_date: string
+          id?: number
+          notes?: string
+          start_date: string
+          title?: string
+          user_uuid?: string
+        }
+        Update: {
+          category?: number | null
+          created_at?: string
+          end_date?: string
+          id?: number
+          notes?: string
+          start_date?: string
+          title?: string
+          user_uuid?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_events_category_fkey"
+            columns: ["category"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      variables: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          name: string
+          order_index: number | null
+          project_id: string
+          type: string
+          updated_at: string | null
+          updated_by: string | null
+          value: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name: string
+          order_index?: number | null
+          project_id: string
+          type: string
+          updated_at?: string | null
+          updated_by?: string | null
+          value?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name?: string
+          order_index?: number | null
+          project_id?: string
+          type?: string
+          updated_at?: string | null
+          updated_by?: string | null
+          value?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "variables_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workflow_conditions: {
+        Row: {
+          compare_value: string
+          created_at: string | null
+          description: string | null
+          field_name: string
+          id: string
+          logic: string
+          step_number: number
+          workflow_id: string
+        }
+        Insert: {
+          compare_value: string
+          created_at?: string | null
+          description?: string | null
+          field_name: string
+          id?: string
+          logic: string
+          step_number: number
+          workflow_id: string
+        }
+        Update: {
+          compare_value?: string
+          created_at?: string | null
+          description?: string | null
+          field_name?: string
+          id?: string
+          logic?: string
+          step_number?: number
+          workflow_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workflow_conditions_workflow_id_fkey"
+            columns: ["workflow_id"]
+            isOneToOne: false
+            referencedRelation: "workflow_info"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workflow_info: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+          step_count: number
+          type: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          step_count?: number
+          type?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          step_count?: number
+          type?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      workflow_instance_history: {
+        Row: {
+          action: string
+          action_by: string | null
+          actor_role: string
+          comment: string | null
+          created_at: string | null
+          id: string
+          instance_id: string
+          step_number: number
+        }
+        Insert: {
+          action: string
+          action_by?: string | null
+          actor_role: string
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          instance_id: string
+          step_number: number
+        }
+        Update: {
+          action?: string
+          action_by?: string | null
+          actor_role?: string
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          instance_id?: string
+          step_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workflow_instance_history_instance_id_fkey"
+            columns: ["instance_id"]
+            isOneToOne: false
+            referencedRelation: "workflow_instances"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workflow_instances: {
+        Row: {
+          created_at: string | null
+          current_step: number
+          form_data: Json | null
+          id: string
+          status: Database["public"]["Enums"]["workflow_status"] | null
+          updated_at: string | null
+          user_id: string
+          workflow_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          current_step?: number
+          form_data?: Json | null
+          id?: string
+          status?: Database["public"]["Enums"]["workflow_status"] | null
+          updated_at?: string | null
+          user_id: string
+          workflow_id: string
+        }
+        Update: {
+          created_at?: string | null
+          current_step?: number
+          form_data?: Json | null
+          id?: string
+          status?: Database["public"]["Enums"]["workflow_status"] | null
+          updated_at?: string | null
+          user_id?: string
+          workflow_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workflow_instances_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "workflow_instances_workflow_id_fkey"
+            columns: ["workflow_id"]
+            isOneToOne: false
+            referencedRelation: "workflow_info"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workflow_steps: {
+        Row: {
+          actions: Json | null
+          created_at: string | null
+          description: string | null
+          handler_ref: string | null
+          handler_type: string | null
+          id: string
+          is_end: boolean | null
+          status: Database["public"]["Enums"]["workflow_status"] | null
+          step_number: number
+          type: string
+          workflow_id: string
+        }
+        Insert: {
+          actions?: Json | null
+          created_at?: string | null
+          description?: string | null
+          handler_ref?: string | null
+          handler_type?: string | null
+          id?: string
+          is_end?: boolean | null
+          status?: Database["public"]["Enums"]["workflow_status"] | null
+          step_number: number
+          type: string
+          workflow_id: string
+        }
+        Update: {
+          actions?: Json | null
+          created_at?: string | null
+          description?: string | null
+          handler_ref?: string | null
+          handler_type?: string | null
+          id?: string
+          is_end?: boolean | null
+          status?: Database["public"]["Enums"]["workflow_status"] | null
+          step_number?: number
+          type?: string
+          workflow_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workflow_steps_workflow_id_fkey"
+            columns: ["workflow_id"]
+            isOneToOne: false
+            referencedRelation: "workflow_info"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspaces: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      f_unaccent: { Args: { "": string }; Returns: string }
+      match_documents: {
+        Args: { filter?: Json; match_count?: number; query_embedding: string }
+        Returns: {
+          content: string
+          id: number
+          metadata: Json
+          similarity: number
+        }[]
+      }
+      unaccent: { Args: { "": string }; Returns: string }
+    }
+    Enums: {
+      category_type: "global" | "user"
+      doc_category: "default" | "văn bản"
+      fb_post_type: "training_point" | "event" | "other"
+      scraping_source_from: "facebook" | "tdmu.edu.vn"
+      workflow_handler_type: "AUTHOR" | "GROUP" | "USER" | "CHOOSE_USER"
+      workflow_status:
+        | "receive"
+        | "create"
+        | "complete"
+        | "aligning"
+        | "wait_receive"
+        | "in_progress"
+        | "reject"
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+}
+
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+
+export type Tables<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  public: {
+    Enums: {
+      category_type: ["global", "user"],
+      doc_category: ["default", "văn bản"],
+      fb_post_type: ["training_point", "event", "other"],
+      scraping_source_from: ["facebook", "tdmu.edu.vn"],
+      workflow_handler_type: ["AUTHOR", "GROUP", "USER", "CHOOSE_USER"],
+      workflow_status: [
+        "receive",
+        "create",
+        "complete",
+        "aligning",
+        "wait_receive",
+        "in_progress",
+        "reject",
+      ],
+    },
+  },
+} as const
