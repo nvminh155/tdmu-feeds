@@ -8,10 +8,11 @@ import { toast } from "sonner";
 import { TPage } from "@/types/post";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
+import { useSession } from "@/contexts/session-provider";
 
 const FavoriteProfileToggleButton = ({ page }: { page: TPage }) => {
   const queryClient = useQueryClient();
+  const { user } = useSession();
 
   const { mutate: toggleFavoriteProfile, isPending: isLoading } = useMutation({
     mutationFn: async ({
@@ -48,12 +49,18 @@ const FavoriteProfileToggleButton = ({ page }: { page: TPage }) => {
       variant="outline"
       size="sm"
       className="group/heart-action flex-1 gap-2 bg-transparent hover:bg-destructive/5"
-      onClick={() =>
+      onClick={() => {
+        if (!user) {
+          toast.error("Đăng nhập để thêm vào yêu thích!");
+          return;
+        }
+
+
         toggleFavoriteProfile({
           profile_short_name: page.short_name,
           value: !page.favorite_status,
-        })
-      }
+        });
+      }}
       title="Toggle favorite"
       disabled={isLoading}
     >

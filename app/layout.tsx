@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 import { cn } from "@/lib/utils";
 import { geistMono } from "@/styles/fonts";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
@@ -36,6 +37,7 @@ export default function RootLayout({
           <div className="relative h-full">
             <main className="relative  flex-1">{children}</main>
           </div>
+          <Toaster />
         </Providers>
       </body>
     </html>
