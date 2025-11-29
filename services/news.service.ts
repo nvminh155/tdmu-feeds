@@ -39,7 +39,8 @@ const NewsService = {
   getPostImages: async (post_id: string) => {
     return await kyApi.get<string[]>(`news/post-images/${post_id}`, {});
   },
-  getFavoriteProfiles: async () => {
+  getFavoriteProfiles: async (userId?: string) => {
+    if (!userId) return [] as TFavoriteProfile[];
     return await kyAuthApi.get<TFavoriteProfile[]>("news/favorite-profiles");
   },
   addFavoriteProfile: async (profile_short_name: string) => {
