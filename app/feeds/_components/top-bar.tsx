@@ -1,10 +1,11 @@
 "use client";
 
 import AuthButton from "@/components/auth/auth-button";
-import { Search, Bell, LoaderCircle } from "lucide-react";
+import { Search, Bell, LoaderCircle, Star, Plus } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import Image from "next/image";
+import { FEEDS_NAV_ITEMS } from "@/config";
 
 export function TopBar() {
   return (
@@ -22,7 +23,7 @@ export function TopBar() {
             <span className="text-primary-foreground text-lg font-bold">T</span>
           </div> */}
           <div className="hidden sm:block">
-          <h1 className="text-lg font-bold bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <h1 className="text-lg font-bold bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
               TDMU News Feed
             </h1>
             <p className="text-xs text-muted-foreground">
@@ -30,6 +31,10 @@ export function TopBar() {
             </p>
           </div>
         </Link>
+
+        <NavList
+          items={FEEDS_NAV_ITEMS}
+        />
 
         <div className="flex items-center gap-4">
           <Suspense fallback={<LoaderCircle className="size-5 animate-spin" />}>
@@ -40,3 +45,39 @@ export function TopBar() {
     </div>
   );
 }
+
+const NavList = ({
+  items,
+}: {
+  items: { href: string; label: string; icon: any }[];
+}) => {
+  return (
+    <ul className="flex items-center gap-4 max-md:hidden px-2">
+      {items.map((item) => (
+        <NavItem key={item.href} href={item.href} label={item.label} icon={item.icon} />
+      ))}
+    </ul>
+  );
+};
+
+const NavItem = ({
+  href,
+  label,
+  icon,
+}: {
+  href: string;
+  label: string;
+  icon: any;
+}) => {
+  const Icon = icon;
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors"
+    >
+      <Icon className="size-4" />
+      {label}
+    </Link>
+  );
+};

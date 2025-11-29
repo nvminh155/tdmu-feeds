@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import PageInfoList from "./page-info-list";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "TDMU Feeds | Thông tin về các trang",
@@ -9,11 +8,7 @@ export const metadata: Metadata = {
 };
 
 const PagesInfo = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <PageInfoList />
-    </Suspense>
-  );
+  return <PageInfoList />;
 };
 
 export default PagesInfo;

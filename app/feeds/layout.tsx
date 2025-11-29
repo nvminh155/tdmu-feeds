@@ -13,17 +13,20 @@ import MobileBottomNav from "./_components/mobile-bottom-nav";
 
 const NewsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <SidebarProvider className="">
-      <NewsAppSidebar className="fixed bg-white!" />
+ <div>
+     <TopBar />
+    <SidebarProvider className="min-h-[calc(100vh-var(--header-height))]">
+      <NewsAppSidebar className="fixed bg-white! min-h-[calc(100vh-var(--header-height))] top-(--header-height)" />
 
       <SidebarInset className="">
-        <TopBar />
+ 
         {/* <SidebarTrigger className="fixed  z-30 top-(--header-height)   " /> */}
 
         <div className="flex-1 min-h-[calc(100vh-var(--header-height))]">{children}</div>
       </SidebarInset>
       <MobileBottomNav />
     </SidebarProvider>
+ </div>
   );
 };
 

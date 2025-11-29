@@ -65,7 +65,7 @@ export function FeedList() {
         });
       },
       {
-        threshold: 0.1,
+        threshold: 0.5,
       }
     );
 
@@ -80,7 +80,7 @@ export function FeedList() {
 
   if (isLoading) {
     return (
-      <div className="py-12 text-center flex items-center gap-2">
+      <div className="py-12 text-center flex items-center gap-2 px-6">
         <Spinner />
         <p className="text-muted-foreground">Đang tải dữ liệu...</p>
       </div>
@@ -93,14 +93,14 @@ export function FeedList() {
     groupedPosts["ungrouped"]?.length === 0
   ) {
     return (
-      <div className="py-12 text-center">
+      <div className="py-12 text-center px-6">
         <p className="text-muted-foreground">Không tìm thấy dữ liệu phù hợp.</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-(--bottom-nav-height)">
       {Object.entries(groupedPosts || {}).map(([groupName, items]) => (
         <div key={groupName} className="space-y-4">
           {groupName !== "ungrouped" && (
@@ -128,7 +128,7 @@ export function FeedList() {
         <Button
           size="sm"
           variant="secondary"
-          className="gap-2 border border-border"
+          className="gap-2 border border-border mx-5"
           onClick={() => fetchNextPage()}
           ref={observerRef}
         >

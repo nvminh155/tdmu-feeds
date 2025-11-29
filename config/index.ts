@@ -1,3 +1,5 @@
+import { Plus, Star } from "lucide-react";
+
 export const port = process.env.PORT ?? 3000;
 export const host = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -35,3 +37,17 @@ export const defaultPaginationParams = {
 export type TPaginationParams = typeof defaultPaginationParams;
 
 // Use the default: `always`
+export const FEEDS_NAV_ITEMS = [
+  {
+    href: "https://forms.gle/aKnC2yMKecaCXo8x8",
+    label: "Đánh giá",
+    icon: Star,
+    blank: true,
+  },
+  {
+    href: "https://forms.gle/r4WLXrsEYNzryjxy5",
+    label: "Bổ sung trang",
+    icon: Plus,
+    blank: true,
+  },
+] ;

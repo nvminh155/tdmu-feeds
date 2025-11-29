@@ -53,6 +53,7 @@ html {
 }
 
 :root {
+  --bottom-nav-height: 69px;
   --header-height: 69px;
   --radius: 0.625rem;
   --background: oklch(1 0 0);

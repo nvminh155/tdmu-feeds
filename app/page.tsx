@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, Newspaper, Users, Bell, Zap, Heart, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export default function LandingPage() {
   return (
@@ -9,9 +10,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-              <Newspaper className="h-5 w-5 text-primary-foreground" />
-            </div>
+        <Image src="/og-img.png" alt="TDMU Feeds"  width={50} height={50} className="object-cover" />
             <span className="text-xl font-bold">TDMU Feeds</span>
           </div>
 
@@ -33,7 +32,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-3">
             <Button size="sm" asChild>
               <Link href="/feeds">
-                Bắt đầu
+                Xem ngay
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
