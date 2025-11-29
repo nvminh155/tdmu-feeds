@@ -2,7 +2,7 @@
 
 import NewsService from "@/services/news.service";
 import { useFeedsFilterStore } from "@/stores/news/feeds-filter.store";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Settings } from "lucide-react";
 
 import { TPostType } from "@/types/post";
@@ -27,6 +27,8 @@ const NewsSettings = () => {
     setIsShownFavoriteOnly,
   } = useFeedsFilterStore();
 
+  const queryClient = useQueryClient();
+
   const clearFilters = () => {
     resetFilters();
   };
@@ -34,7 +36,18 @@ const NewsSettings = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="items-center gap-2 max-sm:w-full">
+        <Button
+          className="items-center gap-2 max-sm:w-full"
+          onMouseEnter={() =>
+            queryClient.prefetchQuery({
+              queryKey: ["tags"],
+              queryFn: () => NewsService.getTagsNews(),
+              staleTime: 1000 * 60 * 50,
+              retry: 2,
+              cacheTime: 1000 * 60 * 60 * 1,
+            })
+          }
+        >
           <Settings className="h-4 w-4" />
           Cài đặt
         </Button>
@@ -117,7 +130,9 @@ const TagList = () => {
   const { data: tags } = useQuery({
     queryKey: ["tags"],
     queryFn: () => NewsService.getTagsNews(),
-    staleTime: 1000 * 60 * 60 * 24,
+    staleTime: 1000 * 60 * 50,
+    retry: 2,
+    cacheTime: 1000 * 60 * 60 * 1,
   });
 
   const handleCategoryChange = (categoryValue: string, checked: boolean) => {

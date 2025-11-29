@@ -4,7 +4,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTE_PATH } from "@/constants";
 import { useFavoriteProfilesQuery } from "@/features/news";
-import { BookOpen, Heart, Home,  } from "lucide-react";
+import { BookOpen, Heart, Home } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/tooltip";
 import EmptyFavorite from "./empty-favorite";
 import { useSession } from "@/contexts/session-provider";
+import Link from "next/link";
 
 const navigationItems = [
   {
@@ -38,7 +39,6 @@ const navigationItems = [
     label: "Thông tin các trang",
     icon: BookOpen,
     href: "/feeds/pages-info",
-
   },
 ];
 
@@ -51,14 +51,7 @@ export default function NewsAppSidebar({
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <Sidebar
-      {...props}
-      collapsible="icon"
-      className={cn(
-        "",
-        className
-      )}
-    >
+    <Sidebar {...props} collapsible="icon" className={cn("", className)}>
       <SidebarContent className="bg-white">
         <SidebarGroup>
           <SidebarGroupLabel className="flex items-center gap-2 text-black">
@@ -73,15 +66,18 @@ export default function NewsAppSidebar({
                   <SidebarMenuItem key={item.href} className="">
                     <SidebarMenuButton
                       isActive={isActive}
-                      onClick={() => router.push(item.href)}
+                      // remove prefetch
                       className={cn("group/nav-item", {
                         "bg-primary/5! text-primary!": isActive,
                         "text-muted-foreground transition-all duration-200 hover:bg-primary/5":
                           !isActive,
                       })}
+                      asChild
                     >
-                      <item.icon className="size-4 group-hover/nav-item:text-primary" />
-                      <span className="text-sm">{item.label}</span>
+                      <Link href={item.href} className="flex items-center" prefetch={false}>
+                        <item.icon className="size-4 group-hover/nav-item:text-primary" />
+                        <span className="text-sm">{item.label}</span>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
@@ -95,7 +91,7 @@ export default function NewsAppSidebar({
             <Heart className="size-4 fill-red-400 text-red-400" />
             <span className="text-sm font-medium text-red-500">Yêu thích</span>
           </SidebarGroupLabel>
-  
+
           <SidebarGroupContent className="mt-4">
             <SidebarMenu className="space-y-2">
               {favoriteProfiles?.map((profile) => {
@@ -145,7 +141,6 @@ export default function NewsAppSidebar({
                   </SidebarMenuItem>
                 );
               })}
-
 
               {!favoriteProfiles?.length && <EmptyFavorite />}
             </SidebarMenu>

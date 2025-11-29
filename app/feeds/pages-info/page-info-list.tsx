@@ -16,7 +16,9 @@ const PageInfoList = () => {
     queryFn: async () => {
       return await NewsService.getPageProfiles(user?.id);
     },
-    staleTime: 1000 * 60 * 60 * 24,
+    retry: 2,
+    cacheTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 15,
   });
 
   return (

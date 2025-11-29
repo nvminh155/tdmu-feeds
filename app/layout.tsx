@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { geistMono } from "@/styles/fonts";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   title: "TDMU Feeds | Nền tảng tổng hợp tin tức đến từ TDMU",
   description:
     "TDMU Feeds là nền tảng tổng hợp tin tức từ các câu lạc bộ và tổ chức thuộc Đại học Thủ Dầu Một. Giúp sinh viên cập nhật thông tin nhanh chóng và tiện lợi.",
@@ -15,7 +16,11 @@ export const metadata: Metadata = {
     title: "TDMU Feeds",
     description:
       "TDMU Feeds là nền tảng tổng hợp tin tức từ các câu lạc bộ và tổ chức thuộc Đại học Thủ Dầu Một.",
-    images: "/favicon.ico",
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? "",
+    siteName: "TDMU Feeds",
+    type: "website",
+    locale: "vi_VN",
+    images: '/og-img.png',
   },
 };
 
