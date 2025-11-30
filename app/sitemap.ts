@@ -1,11 +1,8 @@
 import { MetadataRoute } from "next";
-import { headers } from "next/headers";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const headersList = await headers();
-  const host = headersList.get("host") as string;
+export default  function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://feeds.tdmu.xyz";
 
-  const siteUrl = `https://${host}`;
   return [
     {
       url: siteUrl,
