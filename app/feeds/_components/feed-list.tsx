@@ -101,10 +101,10 @@ export function FeedList() {
 
   return (
     <div className="space-y-6 pb-(--bottom-nav-height)">
-      {Object.entries(groupedPosts || {}).map(([groupName, items]) => (
+      {Object.entries(groupedPosts || {}).map(([groupName, items], pidx) => (
         <div key={groupName} className="space-y-4">
           {groupName !== "ungrouped" && (
-            <div className="flex items-center gap-3 px-6 sticky top-[calc(var(--header-height)+105px)] max-xs:top-[calc(var(--header-height)+149px)] py-4 bg-white z-2 w-full">
+            <div className="flex items-center gap-3 px-6 sticky top-[calc(var(--header-height)+105px+8px)] max-xs:top-[calc(var(--header-height)+149px+8px)] py-4 bg-white z-2 w-full">
               <div className=" w-max px-4 py-1 h-max flex items-center gap-3 border-b bg-primary/10 text-primary rounded-full ">
                 <Calendar className="h-4 w-4 text-lg text-primary dark:text-secondary-foreground" />
                 <h3 className="text-sm font-semibold text-primary dark:text-secondary-foreground">
@@ -117,8 +117,18 @@ export function FeedList() {
           )}
 
           <div className="items grid grid-cols-1 gap-10 px-6">
-            {items.map((item) => (
-              <FeedCard key={item.id} item={item} />
+            {items.map((item, idx) => (
+              <div
+                key={item.id}
+                ref={
+                  idx === items.length - 1 &&
+                  pidx === Object.keys(groupedPosts).length - 1
+                    ? observerRef
+                    : null
+                }
+              >
+                <FeedCard item={item} />
+              </div>
             ))}
           </div>
         </div>
@@ -129,8 +139,6 @@ export function FeedList() {
           size="sm"
           variant="secondary"
           className="gap-2 border border-border mx-5"
-          onClick={() => fetchNextPage()}
-          ref={observerRef}
         >
           {isFetchingNextPage ? <Spinner /> : "Xem thêm"}
         </Button>

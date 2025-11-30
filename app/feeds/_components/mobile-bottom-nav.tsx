@@ -37,14 +37,14 @@ export default function MobileBottomNav() {
           return (
             <Link
               key={item.href}
-              href={item.href}
-              scroll={true}
+              href={item.href}  
               className={`flex flex-col items-center justify-center gap-1 flex-1 py-2 rounded-lg transition-colors ${
                 item.isActive
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               }`}
               target={item.blank ? "_blank" : "_self"}
+              scroll={false}
             >
               <div
                 className={`p-1.5 rounded-full transition-colors ${

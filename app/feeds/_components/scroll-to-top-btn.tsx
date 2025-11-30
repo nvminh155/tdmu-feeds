@@ -24,9 +24,9 @@ function ScrollToTopBtn() {
     visible && (
       <button
         onClick={scrollToTop}
-        className="fixed scrolltop bottom-4 z-100 right-6 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/80 transition"
+        className="fixed scrolltop bottom-4 z-100 right-6 max-md:bottom-[calc(var(--bottom-nav-height)+10px)] bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:bg-primary/80 transition"
       >
-        <ArrowUp size={20} />
+        <ArrowUp size={20} /> 
       </button>
     )
   );

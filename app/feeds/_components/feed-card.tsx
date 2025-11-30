@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Copy,
-  ExternalLink,
-  Flame,
-  Globe,
-  Pin,
-} from "lucide-react";
+import { Copy, ExternalLink, Flame, Globe, Pin } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -18,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 
 import React from "react";
 import { ROUTE_PATH } from "@/constants";
@@ -154,7 +147,9 @@ const FeedCard = ({ item }: { item: TPost }) => {
 const CopyButton = ({ url }: { url: string }) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
-    toast.info("Đã sao chép liên kết");
+    toast.info("Đã chép liên kết", {
+      className: "max-md:bottom-[calc(var(--bottom-nav-height))]!",
+    });
   };
 
   return (

@@ -6,11 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 
 import { PageInfoCardSkeletonList } from "./page-info-card-skeleton";
 import PageInfoCard from "./page-info-card";
-
+import { useAutoScrollToTop } from "@/hooks/use-scroll-to-top";
 
 const PageInfoList = () => {
+  // useAutoScrollToTop();
+ 
   const { user } = useSession();
-
   const { data, isLoading } = useQuery({
     queryKey: ["rss_profiles", user?.id],
     queryFn: async () => {
@@ -22,7 +23,7 @@ const PageInfoList = () => {
   });
 
   return (
-    <div className="mx-auto mt-8 pb-8 px-6 max-md:pb-[calc(var(--bottom-nav-height)+8px)]">
+    <div className="mx-auto pb-8 px-6 max-md:pb-[calc(var(--bottom-nav-height)+8px)] info-list">
       <h1 className="my-4 text-2xl font-bold">Thông tin các trang</h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
         {isLoading ? (
@@ -35,6 +36,6 @@ const PageInfoList = () => {
       </div>
     </div>
   );
-}
+};
 
 export default PageInfoList;

@@ -11,7 +11,7 @@ import { SearchAndFilter } from "../_components/search-and-filter";
 const HomeTabs = () => {
   return (
     <Tabs defaultValue={"all"}>
-    <div className="w-full bg-white  sticky top-(--header-height) border-b border-border z-20 px-6">
+    <div className="w-full bg-white  sticky top-(--header-height) border-b border-border z-20 px-6 py-2">
       <div className="max-w-4xl mx-auto w-full flex flex-col items-start   ">
         <TabsList className="mb-4 w-full  justify-start flex  bg-inherit text-primary pb-0 p-0 ">
           <TabsTrigger

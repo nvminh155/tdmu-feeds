@@ -4,14 +4,20 @@ import { useState } from "react";
 import { Copy } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { toast } from "sonner";
 
 const CopyLinkButton = ({ url }: { url: string }) => {
   const [copied, setCopied] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    toast.info("Đã sao chép liên kết", {
+      className: "max-md:bottom-[calc(var(--bottom-nav-height))]!",
+    });
   };
 
   return (
@@ -29,6 +35,5 @@ const CopyLinkButton = ({ url }: { url: string }) => {
     </Button>
   );
 };
-
 
 export default CopyLinkButton;

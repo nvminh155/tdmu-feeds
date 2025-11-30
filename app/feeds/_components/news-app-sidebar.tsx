@@ -74,7 +74,7 @@ export default function NewsAppSidebar({
                       })}
                       asChild
                     >
-                      <Link href={item.href} className="flex items-center" prefetch={false}>
+                      <Link href={item.href} className="flex items-center" scroll={false}>
                         <item.icon className="size-4 group-hover/nav-item:text-primary" />
                         <span className="text-sm">{item.label}</span>
                       </Link>

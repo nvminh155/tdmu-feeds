@@ -1,7 +1,7 @@
 "use client";
 
 import AuthButton from "@/components/auth/auth-button";
-import { Search, Bell, LoaderCircle, Star, Plus } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import Image from "next/image";
@@ -24,7 +24,7 @@ export function TopBar() {
           </div> */}
           <div className="hidden sm:block">
             <h1 className="text-lg font-bold bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              TDMU News Feed
+              TDMU Feed
             </h1>
             <p className="text-xs text-muted-foreground">
               Thu Dau Mot University
@@ -32,9 +32,7 @@ export function TopBar() {
           </div>
         </Link>
 
-        <NavList
-          items={FEEDS_NAV_ITEMS}
-        />
+        <NavList items={FEEDS_NAV_ITEMS} />
 
         <div className="flex items-center gap-4">
           <Suspense fallback={<LoaderCircle className="size-5 animate-spin" />}>
@@ -54,7 +52,12 @@ const NavList = ({
   return (
     <ul className="flex items-center gap-4 max-md:hidden px-2">
       {items.map((item) => (
-        <NavItem key={item.href} href={item.href} label={item.label} icon={item.icon} />
+        <NavItem
+          key={item.href}
+          href={item.href}
+          label={item.label}
+          icon={item.icon}
+        />
       ))}
     </ul>
   );
