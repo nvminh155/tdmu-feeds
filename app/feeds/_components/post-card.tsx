@@ -1,27 +1,14 @@
 
 "use client";
 
-import Image from "next/image";
-import NewsService from "@/services/news.service";
-import { useQuery } from "@tanstack/react-query";
 import { Eye } from "lucide-react";
 
 import { TPost } from "@/types/post";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+
 import PostImageList from "./post-image-list";
-
-
-
 
 const PostModal = ({ item }: { item: TPost }) => {
   return (

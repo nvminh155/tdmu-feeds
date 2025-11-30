@@ -31,7 +31,7 @@ const FavoriteProfileToggleButton = ({ page }: { page: TPage }) => {
         queryKey: ["rss_profiles"],
       });
       queryClient.invalidateQueries({
-        queryKey: newsQueries.favoriteProfilesKey(),
+        queryKey: newsQueries.listKey(),
       });
       toast.success(
         value

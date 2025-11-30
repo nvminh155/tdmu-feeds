@@ -10,13 +10,13 @@ const NewsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <TopBar />
-      <SidebarProvider className="">
+      <SidebarProvider className="min-h-[calc(100vh-var(--header-height))] ">
         <NewsAppSidebar className="fixed bg-white! min-h-[calc(100vh-var(--header-height))] top-(--header-height)" />
 
-        <SidebarInset className="h-full">
+        <SidebarInset className="">
           {/* <SidebarTrigger className="fixed  z-30 top-(--header-height)   " /> */}
 
-          <div className="">
+          <div className="min-h-[calc(100vh-var(--header-height))] top-(--header-height)">
             {children}
           </div>
         </SidebarInset>

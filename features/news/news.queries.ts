@@ -4,9 +4,9 @@ import { queryOptions } from "@tanstack/react-query";
 const newsQueries = {
   allKey: () => ["all-news"],
   listKey: () => [...newsQueries.allKey(), "list"],
+  favoriteProfilesMasterKey: () => [...newsQueries.listKey(), "favorite-profiles"],
   favoriteProfilesKey: (userId?: string) => [
-    ...newsQueries.allKey(),
-    "favorite-profiles",
+    ...newsQueries.favoriteProfilesMasterKey(),
     userId,
   ],
   favoriteProfiles: (userId?: string) =>

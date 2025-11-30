@@ -54,7 +54,7 @@ const TagList = () => {
             htmlFor={"ck-category-" + category.id}
             className="cursor-pointer text-sm font-normal"
           >
-            {category.name}
+            {category.name.replaceAll(';#', ', ')}
           </Label>
         </div>
       ))}

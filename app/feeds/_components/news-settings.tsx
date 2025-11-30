@@ -3,7 +3,7 @@
 import NewsService from "@/services/news.service";
 import { useFeedsFilterStore } from "@/stores/news/feeds-filter.store";
 import { useQueryClient } from "@tanstack/react-query";
-import { Settings } from "lucide-react";
+import { Check, Filter, RefreshCw } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import TagList from "./tag-list";
 import SettingSection from "./setting-section";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const NewsSettings = () => {
   const {
@@ -43,19 +44,19 @@ const NewsSettings = () => {
             queryClient.prefetchQuery({
               queryKey: ["tags"],
               queryFn: () => NewsService.getTagsNews(),
-              staleTime: 1000 * 60 * 50,
+              staleTime: 1000 * 60 * 20,
               retry: 2,
-              cacheTime: 1000 * 60 * 60 * 1,
+              cacheTime: 1000 * 60 * 25,
             })
           }
         >
-          <Settings className="h-4 w-4" />
-          Cài đặt
+          <Filter className="h-4 w-4" />
+          Bộ lọc
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Cài đặt Feeds</DialogTitle>
+          <DialogTitle>Bộ lọc</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
@@ -95,21 +96,28 @@ const NewsSettings = () => {
                 htmlFor="favorite-only"
                 className="cursor-pointer text-sm font-normal"
               >
-                Chỉ hiển thị bài viết đã được thích
+                Chỉ hiển thị bài viết đã thích
               </Label>
             </div>
           </SettingSection>
           <Separator className="my-2" />
 
           {/* Reset Filters Section */}
-          <div className="flex w-full">
+          <div className="flex w-full justify-end gap-2">
             <Button
               onClick={clearFilters}
               variant="destructive"
               className="ml-auto"
             >
+              <RefreshCw />
               Đặt lại
             </Button>
+            <DialogClose asChild>
+              <Button variant="default" className="">
+                <Check />
+                Xong
+              </Button>
+            </DialogClose>
           </div>
         </div>
       </DialogContent>

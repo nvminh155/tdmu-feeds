@@ -75,7 +75,8 @@ export const useFeeds = () => {
       if (!lastItem) return undefined;
       return new Date(lastItem.converted_time).toISOString();
     },
-    staleTime: (1000 * 60 * 10) - (2 * 1000),
+    staleTime: 1000 * 60 * 10 - 2 * 1000,
+    cacheTime: 1000 * 60 * 10,
     retry: 2,
   });
 

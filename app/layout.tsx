@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "TDMU Feeds",
     type: "website",
     locale: "vi_VN",
-    images: '/og-img.png',
+    images: "/og-img.png",
   },
 };
 
@@ -37,6 +37,7 @@ export default function RootLayout({
           <div className="relative h-full">
             <main className="relative  flex-1">{children}</main>
           </div>
+          {/* <LoadingIndicator /> */}
           <Toaster />
         </Providers>
       </body>
