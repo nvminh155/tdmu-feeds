@@ -1,23 +1,28 @@
 import { MetadataRoute } from "next";
+import { headers } from "next/headers";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const headersList = await headers();
+  const host = headersList.get("host") as string;
+
+  const siteUrl = `https://${host}`;
   return [
     {
-      url: process.env.NEXT_PUBLIC_SITE_URL!,
+      url: siteUrl,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_SITE_URL!}/feeds`,
+      url: `${siteUrl}/feeds`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_SITE_URL!}/feeds/pages-info`,
+      url: `${siteUrl}/feeds/pages-info`,
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "hourly",
     },
   ];
 }
