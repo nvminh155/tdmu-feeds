@@ -26,6 +26,7 @@ const generateRegexFromRoutes = (routes: TPublicRoute) => {
   return new RegExp(`^(${patterns.join("|")})$`, "i");
 };
 
+
 export const config = {
   matcher: [
     // Set a cookie to remember the previous locale for
@@ -34,7 +35,8 @@ export const config = {
 
     // Enable redirects that add missing locales
     // (e.g. `/pathnames` -> `/en/pathnames`)
-    "/((?!_next/static|_next/image|favicon\\.ico|robots\\.txt|sitemap\\.xml|sitemap/.*|site\\.webmanifest).*)",
+    // "/((?!api|_next/static|.*\\..*|_next/image|favicon.ico).*)",
+    "/((?!api|_next/static|.*\\..*|_next/image|favicon.ico|robots\\.txt|sitemap\\.xml|sitemap/.*|site\\.webmanifest).*)",
   ],
 };
 
