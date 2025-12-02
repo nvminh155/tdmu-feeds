@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+
+Sitemap: https://feeds.tdmu.xyz/sitemap.xml
