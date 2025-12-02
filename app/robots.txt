@@ -1,5 +1,4 @@
-User-Agent: *
+User-agent: *
 Allow: /
-Disallow: /private/
 
-Sitemap: https://feeds.tdmu.xyz/sitemap.xml
+Sitemap: https://feeds.tdmu.xyz/sitemap/sitemap.xml

@@ -24,6 +24,7 @@ export const PUBLIC_ROUTES = {
   "/": ["/"],
   "/login": ["/login"],
   "/feeds": ["/feeds", "/feeds/pages-info"],
+  "/sitemap": ["/sitemap", "/sitemap/sitemap.ts","/sitemap/sitemap.xml"],
 } as const;
 
 export type TPublicRoute = typeof PUBLIC_ROUTES;
