@@ -11,39 +11,37 @@ import { SearchAndFilter } from "../_components/search-and-filter";
 const HomeTabs = () => {
   return (
     <Tabs defaultValue={"all"}>
-    <div className="w-full bg-white  sticky top-(--header-height) border-b border-border z-20 px-6 py-2">
-      <div className="max-w-4xl mx-auto w-full flex flex-col items-start   ">
-        <TabsList className="mb-4 w-full  justify-start flex  bg-inherit text-primary pb-0 p-0 ">
-          <TabsTrigger
-            value="all"
-            className="border-t-0 shadow-none! max-w-fit border-l-0 border-r-0 data-[state=active]:text-primary data-[state=active]:border-b! rounded-none ring-0 data-[state=active]:border-primary"
-          >
-            Tin tức
-          </TabsTrigger>
-          <TabsTrigger
-            value="pinned"
-            className="border-t-0 max-w-fit shadow-none!  border-l-0 border-r-0 data-[state=active]:text-primary data-[state=active]:border-b! rounded-none ring-0 data-[state=active]:border-primary"
-          >
-            Được ghim
-          </TabsTrigger>
-        </TabsList>
+      <div className="w-full bg-background  sticky top-(--header-height) border-b border-border z-20 px-6 py-2">
+        <div className="max-w-4xl mx-auto w-full flex flex-col items-start   ">
+          <TabsList className="mb-4 w-full  justify-start flex  bg-inherit text-primary pb-0 p-0 ">
+            <TabsTrigger
+              value="all"
+              className="border-t-0 shadow-none! max-w-fit border-l-0 border-r-0 data-[state=active]:text-primary data-[state=active]:border-b! rounded-none ring-0 data-[state=active]:border-primary"
+            >
+              Tin tức
+            </TabsTrigger>
+            <TabsTrigger
+              value="pinned"
+              className="border-t-0 max-w-fit shadow-none!  border-l-0 border-r-0 data-[state=active]:text-primary data-[state=active]:border-b! rounded-none ring-0 data-[state=active]:border-primary"
+            >
+              Được ghim
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Filter and Search Row */}
-        <SearchAndFilter />
+          {/* Filter and Search Row */}
+          <SearchAndFilter />
+        </div>
       </div>
-    </div>
 
-    <div className="w-full max-w-4xl mx-auto scroll-smooth">
-      <TabsContent value="all">
-        <FeedTabs />
-      </TabsContent>
-      <PinnedTab />
-    </div>
-  </Tabs>
-  )
-}
-
-
+      <div className="w-full max-w-4xl mx-auto scroll-smooth">
+        <TabsContent value="all">
+          <FeedTabs />
+        </TabsContent>
+        <PinnedTab />
+      </div>
+    </Tabs>
+  );
+};
 
 const PinnedTab = () => {
   const { data, isLoading } = usePinnedQuery();
@@ -62,4 +60,4 @@ const PinnedTab = () => {
     </TabsContent>
   );
 };
-export default HomeTabs
+export default HomeTabs;

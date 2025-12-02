@@ -104,7 +104,7 @@ export function FeedList() {
       {Object.entries(groupedPosts || {}).map(([groupName, items], pidx) => (
         <div key={groupName} className="space-y-4">
           {groupName !== "ungrouped" && (
-            <div className="flex items-center gap-3 px-6 sticky top-[calc(var(--header-height)+105px+8px)] max-xs:top-[calc(var(--header-height)+149px+8px)] py-4 bg-white z-2 w-full">
+            <div className="flex items-center gap-3 px-6 sticky top-[calc(var(--header-height)+105px+8px)] max-xs:top-[calc(var(--header-height)+149px+8px)] py-4 bg-background z-2 w-full">
               <div className=" w-max px-4 py-1 h-max flex items-center gap-3 border-b bg-primary/10 text-primary rounded-full ">
                 <Calendar className="h-4 w-4 text-lg text-primary dark:text-secondary-foreground" />
                 <h3 className="text-sm font-semibold text-primary dark:text-secondary-foreground">

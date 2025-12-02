@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(geistMono.variable)}>
+    <html lang="en" className={cn(geistMono.variable)} suppressHydrationWarning>
       <body className={` h-full min-h-screen`}>
         <Providers>
           <div className="relative h-full">

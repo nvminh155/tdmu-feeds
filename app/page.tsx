@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight, Newspaper, Users, Bell, Zap, Heart, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { DarkThemeToggle } from "@/components/dark-theme-toggle"
 
 export default function LandingPage() {
   return (
@@ -30,6 +31,7 @@ export default function LandingPage() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <DarkThemeToggle />
             <Button size="sm" asChild>
               <Link href="/feeds">
                 Xem ngay

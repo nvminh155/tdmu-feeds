@@ -129,7 +129,7 @@ const FeedCard = ({ item }: { item: TPost }) => {
             >
               <Button
                 size="sm"
-                className="flex w-full items-center gap-1 text-sm outline-2 dark:border dark:border-primary dark:border-white dark:hover:text-white max-sm:text-xs"
+                className="flex w-full items-center gap-1 text-sm outline-2 dark:border dark:text-primary-foreground max-sm:text-xs"
               >
                 <ExternalLink className="mr-1 h-4 w-4 max-lg:h-4 max-lg:w-4" />
                 Xem bài viết

@@ -52,7 +52,7 @@ export default function NewsAppSidebar({
   const router = useRouter();
   return (
     <Sidebar {...props} collapsible="icon" className={cn("", className)}>
-      <SidebarContent className="bg-white">
+      <SidebarContent className="">
         <SidebarGroup>
           <SidebarGroupLabel className="flex items-center gap-2 text-black">
             <span className="text-sm font-medium">Điều hướng</span>
