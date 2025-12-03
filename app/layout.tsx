@@ -4,6 +4,7 @@ import Providers from "./providers";
 import { cn } from "@/lib/utils";
 import { geistMono } from "@/styles/fonts";
 import { Toaster } from "@/components/ui/sonner";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
@@ -39,6 +40,7 @@ export default function RootLayout({
           </div>
           {/* <LoadingIndicator /> */}
           <Toaster />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
