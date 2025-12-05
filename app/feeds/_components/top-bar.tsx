@@ -17,7 +17,7 @@ export function TopBar() {
     <div className="border-b border-border bg-card sticky top-0 z-30 h-(--header-height)">
       {/* Header with logo and login */}
       <div className="px-6 py-3 flex items-center justify-between ">
-        <Link href="/feeds" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <Image src={imgSrc} alt="TDMU News Feed" width={50} height={50} />
           {/* <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-sm">
             <span className="text-primary-foreground text-lg font-bold">T</span>
